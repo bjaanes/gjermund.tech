@@ -38,13 +38,9 @@ runs:
       shell: bash
       run: echo "::set-output name=id::$(curl -s "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/chain-id.txt")"
 
-    - id: get-akash-node
-      shell: bash
-      run: echo "::set-output name=uri::$(curl -s "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/rpc-nodes.txt" | shuf -n 1)"
-
     - name: Send deployment transactions
       shell: bash
-      run: akash tx deployment update ${{inputs.AKASH_DEPLOY_FILE}} -y --dseq ${{inputs.AKASH_DSEQ}} --from AKASH_GITHUB_RUNNER --keyring-backend test --chain-id ${{ steps.get-akash-chain-id.outputs.id }} --node ${{ steps.get-akash-node.outputs.uri }} --gas-prices 0.025uakt --gas auto --gas-adjustment 1.5
+      run: akash tx deployment update ${{inputs.AKASH_DEPLOY_FILE}} -y --dseq ${{inputs.AKASH_DSEQ}} --from AKASH_GITHUB_RUNNER --keyring-backend test --chain-id ${{ steps.get-akash-chain-id.outputs.id }} --node https://rpc.akash.forbole.com:443 --gas-prices 0.025uakt --gas auto --gas-adjustment 1.5
 
     - name: Wait for Deployment
       shell: bash
@@ -52,4 +48,4 @@ runs:
 
     - name: Send manifest
       shell: bash
-      run: akash provider send-manifest ${{inputs.AKASH_DEPLOY_FILE}} --node ${{ steps.get-akash-node.outputs.uri }} --dseq  ${{inputs.AKASH_DSEQ}} --provider ${{inputs.AKASH_PROVIDER}} --home /home/runner/.akash --from AKASH_GITHUB_RUNNER --keyring-backend test
+      run: akash provider send-manifest ${{inputs.AKASH_DEPLOY_FILE}} --node https://rpc.akash.forbole.com:443 --dseq  ${{inputs.AKASH_DSEQ}} --provider ${{inputs.AKASH_PROVIDER}} --home /home/runner/.akash --from AKASH_GITHUB_RUNNER --keyring-backend test
