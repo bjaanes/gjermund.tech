@@ -40,7 +40,7 @@ runs:
 
     - id: get-akash-node
       shell: bash
-      run: echo "::set-output name=uri::$(curl -s "rpc-nodes.txt" | shuf -n 1)"
+      run: echo "::set-output name=uri::$(curl -s "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/rpc-nodes.txt" | shuf -n 1)"
 
     - name: Send deployment transactions
       shell: bash
