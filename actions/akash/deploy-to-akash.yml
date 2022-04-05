@@ -1,0 +1,55 @@
+name: "Deploy to Akash with Github Actions"
+description: "Deploy to Akash with Github Actions"
+inputs:
+  AKASH_WALLET_KEY:
+    description: "akash wallet key pem"
+    required: true
+  AKASH_WALLET_KEY_PASSWORD:
+    description: "password encrypting the pem"
+    required: true
+  GITHUB_TOKEN:
+    description: "github token runner"
+    required: true
+  AKASH_DEPLOY_CERTIFICATE:
+    description: "akash deploy certificate"
+    required: true
+  AKASH_DSEQ:
+    description: "dseq of your deployment"
+    required: true
+  AKASH_PROVIDER:
+    description: "bech32 of your provider"
+    required: true
+  AKASH_DEPLOY_FILE:
+    description: "path to the deploy yaml file, defaults to 'deploy.yml'"
+    default: "deploy.yml"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Akash on Github Actions Setup
+      uses: ovrclk/akash-ghaction-setup
+      with:
+        GITHUB_TOKEN: ${{inputs.GITHUB_TOKEN}}
+        AKASH_WALLET_KEY: ${{inputs.AKASH_WALLET_KEY}}
+        AKASH_WALLET_KEY_PASSWORD: ${{inputs.AKASH_WALLET_KEY_PASSWORD}}
+        AKASH_DEPLOY_CERTIFICATE: ${{inputs.AKASH_DEPLOY_CERTIFICATE}}
+
+    - id: get-akash-chain-id
+      shell: bash
+      run: echo "::set-output name=id::$(curl -s "https://raw.githubusercontent.com/ovrclk/net/master/mainnet/chain-id.txt")"
+
+    - id: get-akash-node
+      shell: bash
+      run: echo "::set-output name=uri::$(curl -s "rpc-nodes.txt" | shuf -n 1)"
+
+    - name: Send deployment transactions
+      shell: bash
+      run: akash tx deployment update ${{inputs.AKASH_DEPLOY_FILE}} -y --dseq ${{inputs.AKASH_DSEQ}} --from AKASH_GITHUB_RUNNER --keyring-backend test --chain-id ${{ steps.get-akash-chain-id.outputs.id }} --node ${{ steps.get-akash-node.outputs.uri }} --gas-prices 0.025uakt --gas auto --gas-adjustment 1.5
+
+    - name: Wait for Deployment
+      shell: bash
+      run: sleep 30
+
+    - name: Send manifest
+      shell: bash
+      run: akash provider send-manifest ${{inputs.AKASH_DEPLOY_FILE}} --node ${{ steps.get-akash-node.outputs.uri }} --dseq  ${{inputs.AKASH_DSEQ}} --provider ${{inputs.AKASH_PROVIDER}} --home /home/runner/.akash --from AKASH_GITHUB_RUNNER --keyring-backend test
