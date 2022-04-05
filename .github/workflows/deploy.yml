@@ -43,6 +43,8 @@ jobs:
 
       - run: sed -i 's/CHANGE_ME/'${{ steps.git-sha-short.outputs.sha_short }}'/' deploy.yml
 
+      - run: cat deploy.yml
+
       - uses: ./actions/akash
         with:
           AKASH_WALLET_KEY: ${{ secrets.AKASH_WALLET_KEY }}
