@@ -27,7 +27,7 @@ runs:
   using: "composite"
   steps:
     - name: Akash on Github Actions Setup
-      uses: ovrclk/akash-ghaction-setup
+      uses: ovrclk/akash-ghaction-setup@main
       with:
         GITHUB_TOKEN: ${{inputs.GITHUB_TOKEN}}
         AKASH_WALLET_KEY: ${{inputs.AKASH_WALLET_KEY}}
