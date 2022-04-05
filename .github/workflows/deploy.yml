@@ -52,4 +52,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AKASH_DEPLOY_CERTIFICATE: ${{ secrets.AKASH_DEPLOY_CERTIFICATE }}
           AKASH_DSEQ: 5357384
-          AKASH_PROVIDER: akash1fjsgc7uy2vy23juehaja3f5wzfqu8wd6rwck7p
+          AKASH_PROVIDER: akash1r7y2msa9drwjss5umza854he5vwr2czunye9de
