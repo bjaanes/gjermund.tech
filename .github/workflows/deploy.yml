@@ -37,3 +37,17 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v3
+
+      - id: git-sha-short
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - run: sed -i 's/CHANGE_ME/'${{ steps.git-sha-short.outputs.sha_short }}'/' deploy.yml
+
+      - uses: ./actions/akash
+        with:
+          AKASH_WALLET_KEY: ${{ secrets.AKASH_WALLET_KEY }}
+          AKASH_WALLET_KEY_PASSWORD: ${{ secrets.AKASH_WALLET_KEY_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AKASH_DEPLOY_CERTIFICATE: ${{ secrets.AKASH_DEPLOY_CERTIFICATE }}
+          AKASH_DSEQ: ${{ secrets.AKASH_DSEQ }}
+          AKASH_PROVIDER: ${{ secrets.AKASH_PROVIDER }}

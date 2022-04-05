@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  gjermund-tech:
+    image: empowergjermund/gjermund.tech:CHANGE_ME
+    expose:
+      - port: 8080
+        as: 80
+        accept:
+          - "gjermund.tech"
+        to:
+          - global: true
+profiles:
+  compute:
+    gjermund-tech:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512M
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        gjermund-tech:
+          denom: uakt
+          amount: 100
+
+deployment:
+  gjermund-tech:
+    akash:
+      profile: gjermund-tech
+      count: 1
