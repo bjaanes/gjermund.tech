@@ -1,0 +1,14 @@
+baseURL = 'https://gjermund.tech/'
+languageCode = 'en-us'
+title = 'Gjermund'
+theme = "hugo-theme-monochrome"
+enableEmoji = true
+paginate = 5
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
