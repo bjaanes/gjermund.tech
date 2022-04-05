@@ -48,4 +48,4 @@ runs:
 
     - name: Send manifest
       shell: bash
-      run: akash provider send-manifest ${{inputs.AKASH_DEPLOY_FILE}} --node https://rpc.akash.forbole.com:443 --dseq  ${{inputs.AKASH_DSEQ}} --provider ${{inputs.AKASH_PROVIDER}} --home /home/runner/.akash --from AKASH_GITHUB_RUNNER --keyring-backend test
+      run: akash provider send-manifest ${{inputs.AKASH_DEPLOY_FILE}} --node https://rpc.akash.forbole.com:443 --dseq ${{inputs.AKASH_DSEQ}} --provider ${{inputs.AKASH_PROVIDER}} --home /home/runner/.akash --from AKASH_GITHUB_RUNNER --keyring-backend test
