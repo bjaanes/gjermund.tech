@@ -49,5 +49,5 @@ jobs:
           AKASH_WALLET_KEY_PASSWORD: ${{ secrets.AKASH_WALLET_KEY_PASSWORD }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AKASH_DEPLOY_CERTIFICATE: ${{ secrets.AKASH_DEPLOY_CERTIFICATE }}
-          AKASH_DSEQ: ${{ secrets.AKASH_DSEQ }}
-          AKASH_PROVIDER: ${{ secrets.AKASH_PROVIDER }}
+          AKASH_DSEQ: 5355872
+          AKASH_PROVIDER: akash1fjsgc7uy2vy23juehaja3f5wzfqu8wd6rwck7p
