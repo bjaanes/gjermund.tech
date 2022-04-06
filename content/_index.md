@@ -15,5 +15,7 @@ keywords:
 - programmer-friendly
 ---
 
-Gjermund, tech and blockchain stuff.
+Gjermund. 
+
+CTO @ empower.eco.
 

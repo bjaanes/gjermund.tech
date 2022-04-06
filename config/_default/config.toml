@@ -5,6 +5,11 @@ theme = "hugo-theme-monochrome"
 enableEmoji = true
 paginate = 5
 
+[params]
+  description = "Gjermund's website. Cosmos blog and stuff."
+  images = ['gjermundtechsocial.png']
+  title = 'Gjermund'
+
 [taxonomies]
 category = "categories"
 tag = "tags"
