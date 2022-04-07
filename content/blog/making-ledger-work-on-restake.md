@@ -91,6 +91,8 @@ have been tested thoroughly (if you feel like donating funds for every chain in 
 >
 > The point being: if the commands fail, you might have to make adjustments. Probably around the fees. If you
 > need any help, reach out to me on [twitter @gjermundbjaanes](https://twitter.com/gjermundbjaanes) or on [Eco Stake's discord server](https://discord.gg/HddWzvqgHk) (gjermund#1586).
+> 
+> You might be able to find some of this information from the Cosmos Directory (also built by Eco Stake!): https://cosmos.directory/
 
 ### The actual step-by-step guide
 
