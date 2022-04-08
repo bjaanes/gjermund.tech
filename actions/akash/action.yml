@@ -44,7 +44,7 @@ runs:
 
     - name: Wait for Deployment
       shell: bash
-      run: sleep 30
+      run: sleep 60
 
     - name: Send manifest
       shell: bash
