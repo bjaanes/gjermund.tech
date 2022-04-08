@@ -24,9 +24,21 @@ For Ledger users, however, the joy was short-lived because unfortunately, the au
 
 ## TL;DR
 
-There is now a workaround to use Ledger with REStake, but it requires some command line usage. 
+There is now a workaround to use Ledger with REStake, but it requires some command line usage.
 
-I have however made a guide and little program to make the process a little easier.
+If you're already familiar with the chain clis, essentially you just need to make two authz tx with generic grants.
+
+High level commands (still need --from, --ledger, --node, etc)
+```shell
+$ gaiad tx authz grant VALIDATOR_BOT_ADDRESS generic --msg-type /cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward
+$ gaiad tx authz grant VALIDATOR_BOT_ADDRESS generic --msg-type /cosmos.staking.v1beta1.MsgDelegate
+```
+
+> You can find the validators bot addresses here: https://github.com/eco-stake/validator-registry
+> 
+> For node rpc URI's, links to source and more, check out: https://cosmos.directory
+
+I have however made a guide and little cli program to make the process a little easier.
 
 If you're not interested in the why and how go directly to the [guide](#guide), or watch a demonstration:
 
