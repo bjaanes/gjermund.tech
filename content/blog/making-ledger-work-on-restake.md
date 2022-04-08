@@ -28,7 +28,9 @@ There is now a workaround to use Ledger with REStake, but it requires some comma
 
 I have however made a guide and little program to make the process a little easier.
 
-If you're not interested in the why and how go directly to the [guide](#guide)
+If you're not interested in the why and how go directly to the [guide](#guide), or watch a demonstration:
+
+{{< youtube F9im6mYYHBI >}}
 
 ## Why doesn't it work?
 
