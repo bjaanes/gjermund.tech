@@ -145,6 +145,7 @@ Linux amd64: https://github.com/cosmos/gaia/releases/download/v6.0.4/gaiad-v6.0.
 Linux arm64: https://github.com/cosmos/gaia/releases/download/v6.0.4/gaiad-v6.0.4-linux-arm64
 Darwin (macOS) amd64: https://github.com/cosmos/gaia/releases/download/v6.0.4/gaiad-v6.0.4-darwin-amd64
 Windows amd64: https://github.com/cosmos/gaia/releases/download/v6.0.4/gaiad-v6.0.4-windows-amd64.exe
+!IMPORTANT! In some cases, the binaries are not built with support for Ledger. In those cases you will need to build from source.
 
 After getting the cli, you need to run 3 commands:
 
@@ -164,6 +165,8 @@ We'll go through each of them next.
 #### 3. Download the chain cli
 
 You can download the source code and build the binary yourself if you are familiar with that process, or you can use the binary downloads provided directly.
+
+> !IMPORTANT! In some cases, the binaries are not built with support for Ledger. In those cases you will need to build from source.
 
 > It is worth noting that some chains don't provide this information to the chain registry (our it might be outdated). 
 > Juno is such an example at the current time of writing.
