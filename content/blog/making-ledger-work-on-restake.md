@@ -167,11 +167,21 @@ We'll go through each of them next.
 You can download the source code and build the binary yourself if you are familiar with that process, or you can use the binary downloads provided directly.
 
 > !IMPORTANT! In some cases, the binaries are not built with support for Ledger. In those cases you will need to build from source.
+> 
+> Building from source is actually quite easy. You mainly need Go installed (https://go.dev/doc/install) and can simply run `make install` in the source repo root.
+> When you do this, the binary gets installed to your GOPATH/bin which is typically something like /home/username/go/bin (this path is useful to add to your PATH if you havent already)
 
 > It is worth noting that some chains don't provide this information to the chain registry (our it might be outdated). 
 > Juno is such an example at the current time of writing.
 > 
 > In such cases, it should be fairly easy to find the repository by a quick google search like for instance `juno github` which should give you https://github.com/CosmosContracts/juno
+
+If you downloaded that binary instead of building from source, there is a good chance you might need to make the binary executable. 
+To do this, all you need to do is:
+
+```shell
+$ chmod +x /path/to/binary/gaiad
+```
 
 #### 4. Add Ledger to the cli's keyring
 
