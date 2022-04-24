@@ -11,23 +11,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: git submodule update --init --recursive
-
-      - id: git-sha-short
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
-      - uses: earthly/actions/setup-earthly@v1
-        with:
-          version: v0.6.13
-
-      - name: Log in to the Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: build and push docker image
-        run: earthly --ci --push +docker --VERSION ${{ steps.git-sha-short.outputs.sha_short }}
+#      - run: git submodule update --init --recursive
+#
+#      - id: git-sha-short
+#        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+#
+#      - uses: earthly/actions/setup-earthly@v1
+#        with:
+#          version: v0.6.13
+#
+#      - name: Log in to the Docker Hub
+#        uses: docker/login-action@v1
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#
+#      - name: build and push docker image
+#        run: earthly --ci --push +docker --VERSION ${{ steps.git-sha-short.outputs.sha_short }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,18 +35,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - id: git-sha-short
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
-      - run: sed -i 's/CHANGE_ME/'${{ steps.git-sha-short.outputs.sha_short }}'/' deploy.yml
-
-      - run: cat deploy.yml
-
-      - uses: ./actions/akash
-        with:
-          AKASH_WALLET_KEY: ${{ secrets.AKASH_WALLET_KEY }}
-          AKASH_WALLET_KEY_PASSWORD: ${{ secrets.AKASH_WALLET_KEY_PASSWORD }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AKASH_DEPLOY_CERTIFICATE: ${{ secrets.AKASH_DEPLOY_CERTIFICATE }}
-          AKASH_DSEQ: 5395134
-          AKASH_PROVIDER: akash10fl5f6ukr8kc03mtmf8vckm6kqqwqpc04eruqa
+#      - id: git-sha-short
+#        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+#
+#      - run: sed -i 's/CHANGE_ME/'${{ steps.git-sha-short.outputs.sha_short }}'/' deploy.yml
+#
+#      - run: cat deploy.yml
+#
+#      - uses: ./actions/akash
+#        with:
+#          AKASH_WALLET_KEY: ${{ secrets.AKASH_WALLET_KEY }}
+#          AKASH_WALLET_KEY_PASSWORD: ${{ secrets.AKASH_WALLET_KEY_PASSWORD }}
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          AKASH_DEPLOY_CERTIFICATE: ${{ secrets.AKASH_DEPLOY_CERTIFICATE }}
+#          AKASH_DSEQ: 5395134
+#          AKASH_PROVIDER: akash10fl5f6ukr8kc03mtmf8vckm6kqqwqpc04eruqa
