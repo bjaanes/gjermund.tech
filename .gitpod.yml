@@ -1,1 +1,1 @@
-image: klakegg/hugo
+image: klakegg/hugo:0.95.0-ext-ubuntu
